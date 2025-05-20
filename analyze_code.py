@@ -58,7 +58,7 @@ def main():
                         help="Choose 'comment' to add inline comments or 'modernize' to refactor to modern frameworks")
 
     args = parser.parse_args()
-    output_file = args.output or insert_suffix(args.input_file, f"_{args.mode}")
+    output_file = args.output or insert_suffix(args.input_file, f"_{args.mode}ed")
     analyze_code(args.input_file, output_file, args.mode)
 
 if __name__ == "__main__":
