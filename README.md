@@ -14,7 +14,13 @@ This tool allows you to annotate and modernize legacy Java code using the Google
 
 ## 🛠️ Setup Instructions
 
-1. **Create and Activate a Conda Environment**
+1. **Clone this repository**
+
+```bash
+git clone https://github.com/shijiahuang/kitchensink-modernizer.git
+```
+
+2. **Create and Activate a Conda Environment**
 
 ```bash
 conda create -n kitchen_upgrade python=3.10
