@@ -11,7 +11,7 @@ client = genai.Client(api_key=API_KEY)
 
 def insert_suffix(filename, suffix):
     base, ext = os.path.splitext(filename)
-    return f"{base}{suffix}{ext}"
+    return f"{base}{suffix}ed{ext}"
 
 def generate_prompt(code, mode="comment"):
     if mode == "modernize":
@@ -58,7 +58,7 @@ def main():
                         help="Choose 'comment' to add inline comments or 'modernize' to refactor to modern frameworks")
 
     args = parser.parse_args()
-    output_file = args.output or insert_suffix(args.input_file, f"_{args.mode}ed")
+    output_file = args.output or insert_suffix(args.input_file, f"_{args.mode}")
     analyze_code(args.input_file, output_file, args.mode)
 
 if __name__ == "__main__":
