@@ -44,7 +44,7 @@ pip install python-dotenv google-generativeai tkinterdnd2
 cp .env.example .env
 ```
 
-Edit `.env` and add your Google Gemini API key:
+Edit `.env` and replace with your Google Gemini API key:
 ```
 GOOGLE_API_KEY=your_google_api_key_here
 ```
