@@ -16,7 +16,7 @@ def scan_java_file(file_path, findings):
         for i, line in enumerate(f, start=1):
             for annotation in OLD_ANNOTATIONS:
                 if annotation in line:
-                    findings.append(f\"{OLD_ANNOTATIONS[annotation]} (File: {file_path}, Line: {i})\")
+                    findings.append(f"{OLD_ANNOTATIONS[annotation]} (File: {file_path}, Line: {i})")
 
 def scan_xml_file(file_path, findings):
     filename = os.path.basename(file_path)
