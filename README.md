@@ -1,6 +1,6 @@
 # Kitchensink modernizer: Java Code Annotation and Modernization Tool
 
-This tool allows you to annotate and modernize legacy Java code using the Google Gemini API. It supports line-by-line inline comments for explanation, as well as full code modernization (e.g., suggesting migration to Spring Boot).
+This tool allows you to annotate and modernize legacy Java code using the Google Gemini API. It supports line-by-line inline comments, full code modernization (e.g., migrating to Spring Boot), and even provides recommendations for adapting traditional JPA code to MongoDB.
 
 ## 🚀 Features
 
@@ -74,7 +74,6 @@ python analyze_code.py path/to/InputFile.java --mode comment
 - Modes:
   - `comment`: Adds inline explanation.
   - `modernize`: Suggests and outputs updated version.
-
 
 ### 3. Use as a Python Function (For Developers)
 
@@ -219,7 +218,7 @@ Instead, pass your API key securely at runtime using:
 
 ---
 
-## Optional: Extract Code Structure Documentation
+## Extract Code Structure
 
 For developers or reviewers who want to understand the class structure of a Java file, this project includes a structure analysis utility.
 
@@ -252,6 +251,73 @@ This will generate a Markdown file listing all classes, fields, and method signa
 - findByEmail(String email)
 - findAllOrderedByName()
 ```
+
+---
+
+## 💡 Optional: Recommendations for MongoDB Migration
+
+The legacy kitchensink application relies on relational database access using JPA and `EntityManager`. To modernize and prepare the application for NoSQL environments such as MongoDB, the following recommendations can be considered:
+
+### 🧠 Why consider MongoDB?
+
+- 📄 Flexible document schemas — easier to evolve data models over time
+- ☁️ Better suited for microservices and cloud-native architectures
+- 🛠️ Reduced setup — no need for strict table relationships or SQL schemas
+
+### 🔁 Suggested Changes
+
+1. **Entity Conversion**  
+   Replace JPA `@Entity` with MongoDB's `@Document`, and use `String` IDs (e.g., UUID or ObjectId).
+
+   **Before (JPA):**
+   ```java
+   @Entity
+   public class Member {
+       @Id
+       private Long id;
+       private String email;
+   }
+   ```
+
+   **After (MongoDB):**
+   ```java
+   @Document(collection = "members")
+   public class Member {
+       @Id
+       private String id;
+       private String email;
+   }
+   ```
+
+2. **Repository Refactor**  
+   Replace `EntityManager` with `MongoRepository` to simplify data access.
+
+   **Before:**
+   ```java
+   @PersistenceContext
+   private EntityManager em;
+   em.find(Member.class, id);
+   ```
+
+   **After:**
+   ```java
+   public interface MemberRepository extends MongoRepository<Member, String> {
+       Optional<Member> findByEmail(String email);
+   }
+   ```
+
+3. **MongoDB Configuration**  
+   In your `application.properties`:
+
+   ```
+   spring.data.mongodb.uri=mongodb://localhost:27017
+   spring.data.mongodb.database=kitchensink
+   ```
+
+### ✅ Final Note
+
+These changes would align best with a migration to Spring Boot and Spring Data MongoDB.  
+The modernization tool could be extended to **identify JPA usage** and **recommend NoSQL-ready alternatives**.
 
 ---
 
