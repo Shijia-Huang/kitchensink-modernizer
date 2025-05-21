@@ -86,8 +86,14 @@ from analyze_code import analyze_code
 analyze_code("path/to/InputFile.java", "path/to/OutputFile.java", mode="comment")
 ```
 
-- This is useful for automation or integrating the tool into your own pipelines.
-- Make sure your `.env` file is present or set `GOOGLE_API_KEY` in your environment variables.
+A sample script is included as `demo_script.py`. To test it, run:
+
+```bash
+python demo_script.py
+```
+
+This is useful for automation or integrating the tool into your own pipelines.
+Make sure your `.env` file is present or set `GOOGLE_API_KEY` in your environment variables.
 
 ---
 
