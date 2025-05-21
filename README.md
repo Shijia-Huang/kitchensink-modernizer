@@ -155,6 +155,36 @@ Here's a screenshot of the GUI application:
 
 ---
 
+## 🐳 Run with Docker
+
+You can run this tool inside a Docker container without needing to set up a Python environment.
+
+### 1. Build the Docker image
+```bash
+docker build -t kitchen-upgrade .
+```
+
+### 2. Run the tool in CLI mode
+```bash
+docker run -it --rm \
+  -v $(pwd):/app \
+  -e GOOGLE_API_KEY=your_real_key \
+  kitchen-upgrade path/to/YourFile.java --mode modernize
+```
+
+### 3. Optionally use .env
+If you already have a `.env` file with your API key:
+```bash
+docker run --rm --env-file .env -v $(pwd):/app kitchen-upgrade path/to/InputFile.java --mode comment
+```
+
+### Explanation
+- `-v $(pwd):/app` mounts your current folder so you can read/write local files.
+- `-e` or `--env-file` passes the API key.
+- You can switch between `--mode comment` and `--mode modernize` as needed.
+
+---
+
 ## 📧 Support
 
 For bugs or feature requests, please contact [sjx2413@gmail.com] or open an issue.
