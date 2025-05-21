@@ -22,8 +22,10 @@ def insert_suffix(filename, suffix):
 def generate_prompt(code, mode="comment"):
     if mode == "modernize":
         return (
-            "You are an expert software architect. Rewrite the following Java code to use modern best practices and frameworks "
-            "(e.g., replace EJB with Spring Boot annotations, use dependency injection, REST APIs, etc.). "
+            "You are an expert software architect. Rewrite the following Java code using modern best practices and frameworks. "
+            "This includes replacing outdated technologies such as EJB or manual EntityManager usage with Spring Boot annotations, "
+            "dependency injection, RESTful APIs, and Spring Data repositories. "
+            "If you detect usage of JPA or EntityManager, also suggest whether it could be replaced by MongoDB (NoSQL) and explain briefly. "
             "Include inline comments that explain what each section does. Return the rewritten code with comments, no markdown formatting.\n\n"
             "Code:\n" + code
         )
