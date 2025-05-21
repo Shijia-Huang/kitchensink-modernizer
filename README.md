@@ -250,6 +250,7 @@ This will generate a Markdown file listing all classes, fields, and method signa
 ### Methods:
 - findById(Long id)
 - findByEmail(String email)
+- findAllOrderedByName()
 ```
 
 ---
