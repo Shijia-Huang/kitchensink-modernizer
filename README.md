@@ -94,6 +94,67 @@ python analyze_code.py path/to/InputFile.java --mode comment
 
 ---
 
+## 🔁 Example: Before and After Modernization
+
+### Before:
+```java
+@ApplicationScoped
+public class MemberRepository {
+    @Inject
+    private EntityManager em;
+
+    public Member findById(Long id) {
+        return em.find(Member.class, id);
+    }
+
+    public Member findByEmail(String email) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
+        Root<Member> member = criteria.from(Member.class);
+        criteria.select(member).where(cb.equal(member.get("email"), email));
+        return em.createQuery(criteria).getSingleResult();
+    }
+}
+```
+
+### After:
+```java
+@Repository // Marks this class as a Spring Data Repository
+@Transactional // Ensures methods are executed within a transaction
+public class MemberRepository {
+
+    @Autowired
+    private EntityManager em;
+
+    public Optional<Member> findById(Long id) {
+        Member member = em.find(Member.class, id);
+        return Optional.ofNullable(member); // Handle null safely
+    }
+
+    public Optional<Member> findByEmail(String email) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
+        Root<Member> member = criteria.from(Member.class);
+        criteria.select(member).where(cb.equal(member.get("email"), email));
+
+        try {
+            return Optional.of(em.createQuery(criteria).getSingleResult());
+        } catch (NoResultException e) {
+            return Optional.empty(); // Return empty Optional if no result
+        }
+    }
+}
+```
+
+---
+
+## 🖼️ GUI Preview
+
+Here's a screenshot of the GUI application:
+![screenshot](images/gui_demo.png)
+
+---
+
 ## 📧 Support
 
 For bugs or feature requests, please contact [sjx2413@gmail.com] or open an issue.
