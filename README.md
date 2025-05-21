@@ -93,7 +93,7 @@ analyze_code("path/to/InputFile.java", "path/to/OutputFile.java", mode="comment"
 
 ## 📂 Output
 
-- A new file will be created (e.g., `InputFile_comment.java`)
+- A new file will be created (e.g., `InputFile_commented.java`)
 - Contains the original code with AI-generated inline comments or a rewritten, modernized version.
 
 ---
