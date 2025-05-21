@@ -24,8 +24,8 @@ git clone https://github.com/shijiahuang/kitchensink-modernizer.git
 2. **Create and Activate a Conda Environment**
 
 ```bash
-conda create -n kitchen_upgrade python=3.10
-conda activate kitchen_upgrade
+conda create -n kitchen-upgrade python=3.10
+conda activate kitchen-upgrade
 ```
 
 3. **Install Dependencies**
