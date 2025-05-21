@@ -158,6 +158,7 @@ Here's a screenshot of the GUI application:
 ## 🐳 Run with Docker
 
 You can run this tool inside a Docker container without needing to set up a Python environment.
+This is especially useful for users who are not familiar with setting up Python or Java environments.
 
 ### 1. Build the Docker image
 ```bash
@@ -165,23 +166,39 @@ docker build -t kitchen-upgrade .
 ```
 
 ### 2. Run the tool in CLI mode
+
+You can choose one of two modes depending on your goal:
+
+#### Option A – Add Inline Comments
+```bash
+docker run -it --rm \
+  -v $(pwd):/app \
+  -e GOOGLE_API_KEY=your_real_key \
+  kitchen-upgrade path/to/YourFile.java --mode comment
+```
+This will produce a new file like `YourFile_commented.java` with inline explanations.
+
+#### Option B – Modernize the Code
 ```bash
 docker run -it --rm \
   -v $(pwd):/app \
   -e GOOGLE_API_KEY=your_real_key \
   kitchen-upgrade path/to/YourFile.java --mode modernize
 ```
+This will produce a modernized Java version like `YourFile_modernized.java`.
 
-### 3. Optionally use .env
-If you already have a `.env` file with your API key:
+### 3. Optionally use a .env file
+If you already have a `.env` file that contains your Gemini API key:
 ```bash
 docker run --rm --env-file .env -v $(pwd):/app kitchen-upgrade path/to/InputFile.java --mode comment
 ```
 
-### Explanation
-- `-v $(pwd):/app` mounts your current folder so you can read/write local files.
-- `-e` or `--env-file` passes the API key.
-- You can switch between `--mode comment` and `--mode modernize` as needed.
+### 🔐 About the API Key
+By default, the Dockerfile includes a placeholder `ENV GOOGLE_API_KEY=your_key_here`, but **you should never hard-code your API key directly into the Dockerfile.**
+
+Instead, pass your API key securely at runtime using:
+- `-e GOOGLE_API_KEY=your_real_key` or
+- `--env-file .env`
 
 ---
 
