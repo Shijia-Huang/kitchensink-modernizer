@@ -253,6 +253,19 @@ This will generate a Markdown file listing all classes, fields, and method signa
 ```
 
 ---
+## 🧠 AI-Powered MongoDB Recommendation (Built-in)
+
+When you use the `modernize` mode, the Gemini API is instructed not only to rewrite legacy Java into Spring Boot-style code, but also to intelligently detect whether MongoDB would be a more suitable backend than traditional JPA.
+
+If the original code includes patterns like `@Entity`, `EntityManager`, or `@PersistenceContext`, the AI will automatically:
+
+- Flag that a NoSQL migration could be considered
+- Suggest replacing JPA annotations with `@Document`
+- Propose `MongoRepository`-based interfaces instead of manual persistence logic
+
+This recommendation logic is embedded directly in the prompt used by the tool. No manual editing is required—you will see MongoDB suggestions directly in the generated output when applicable.
+
+This feature complements the optional MongoDB migration guide provided below.
 
 ## 💡 Optional: Recommendations for MongoDB Migration
 
