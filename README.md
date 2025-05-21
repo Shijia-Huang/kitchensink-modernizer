@@ -219,6 +219,41 @@ Instead, pass your API key securely at runtime using:
 
 ---
 
+## Optional: Extract Code Structure Documentation
+
+For developers or reviewers who want to understand the class structure of a Java file, this project includes a structure analysis utility.
+
+### How to use
+
+First, install the required dependency:
+
+```bash
+pip install javalang
+```
+
+Then run:
+
+```bash
+python structure_mode.py path/to/YourFile.java -o output/structure_summary.md
+```
+
+This will generate a Markdown file listing all classes, fields, and method signatures.
+
+### Example output
+
+```markdown
+## Class: MemberRepository
+
+### Fields:
+- EntityManager em
+
+### Methods:
+- findById(Long id)
+- findByEmail(String email)
+```
+
+---
+
 ## 📧 Support
 
 For bugs or feature requests, please contact [sjx2413@gmail.com] or open an issue.
