@@ -1,4 +1,4 @@
-# Kitchen Upgrade: Java Code Annotation and Modernization Tool
+# Kitchensink modernizer: Java Code Annotation and Modernization Tool
 
 This tool allows you to annotate and modernize legacy Java code using the Google Gemini API. It supports line-by-line inline comments for explanation, as well as full code modernization (e.g., suggesting migration to Spring Boot).
 
