@@ -74,10 +74,7 @@ python analyze_code.py path/to/InputFile.java --mode comment
 - Modes:
   - `comment`: Adds inline explanation.
   - `modernize`: Suggests and outputs updated version.
-- Optional:
-  ```bash
-  python analyze_code.py input.java -o output.java -m modernize
-  ```
+
 
 ### 3. Use as a Python Function (For Developers)
 
@@ -86,7 +83,7 @@ If you are a developer and prefer not to use the GUI, you can import and run the
 ```python
 from analyze_code import analyze_code
 
-analyze_code("samples/Member.java", "output/Member_commented.java", mode="comment")
+analyze_code("path/to/InputFile.java", "path/to/OutputFile.java", mode="comment")
 ```
 
 - This is useful for automation or integrating the tool into your own pipelines.
