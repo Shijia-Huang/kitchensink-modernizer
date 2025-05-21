@@ -11,9 +11,13 @@ client = genai.Client(api_key=API_KEY)
 
 def insert_suffix(filename, suffix):
     base, ext = os.path.splitext(filename)
-    if not suffix.endswith("ed"):
-        suffix += "ed"
-    return f"{base}{suffix}{ext}"
+    if suffix.endswith("ed"):
+        final_suffix = suffix
+    elif suffix.endswith("e"):
+        final_suffix = suffix + "d"
+    else:
+        final_suffix = suffix + "ed"
+    return f"{base}{final_suffix}{ext}"
 
 def generate_prompt(code, mode="comment"):
     if mode == "modernize":
