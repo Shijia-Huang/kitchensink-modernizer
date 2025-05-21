@@ -40,6 +40,7 @@ def main():
     output = extract_structure(args.java_file)
 
     if args.output:
+        os.makedirs(os.path.dirname(args.output), exist_ok=True)
         with open(args.output, 'w') as f:
             f.write(output)
         print(f"Structure saved to {args.output}")
