@@ -234,7 +234,7 @@ pip install javalang
 Then run:
 
 ```bash
-python structure_mode.py path/to/YourFile.java -o output/structure_summary.md
+python code_structure.py path/to/YourFile.java -o output/structure_summary.md
 ```
 
 This will generate a Markdown file listing all classes, fields, and method signatures.
