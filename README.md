@@ -188,9 +188,12 @@ You can choose one of two modes depending on your goal:
 #### Option A – Add Inline Comments
 ```bash
 docker run -it --rm \
-  -v $(pwd):/app \
+  -v $(pwd):/app \  # Mounts this tool's folder (should contain analyze_code.py)
+  -v /absolute/path/to/your/java/project:/project \  # Mounts your external Java project (in this case it is kitchensink) 
+  # (copying mine here for more accessible demo)
+  # -v /Users/shijia_huang/Desktop/kitchen_sink/jboss-eap-quickstarts/kitchensink:/project \ 
   -e GOOGLE_API_KEY=your_real_key \
-  kitchen-upgrade path/to/YourFile.java --mode comment
+  kitchen-upgrade /project/path/to/YourFile.java --mode comment
 ```
 This will produce a new file like `YourFile_commented.java` with inline explanations.
 
@@ -199,7 +202,7 @@ This will produce a new file like `YourFile_commented.java` with inline explanat
 docker run -it --rm \
   -v $(pwd):/app \
   -e GOOGLE_API_KEY=your_real_key \
-  kitchen-upgrade path/to/YourFile.java --mode modernize
+  kitchen-upgrade /project/path/to/YourFile.java  --mode modernize
 ```
 This will produce a modernized Java version like `YourFile_modernized.java`.
 
