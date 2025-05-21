@@ -9,6 +9,7 @@ This tool allows you to annotate and modernize legacy Java code using the Google
 - Modes: `comment` (adds inline explanation) and `modernize` (suggests architectural updates)
 - GUI with drag-and-drop support
 - Command-line interface
+- Can be imported and used directly as a Python module
 
 ---
 
@@ -77,6 +78,19 @@ python analyze_code.py path/to/InputFile.java --mode comment
   ```bash
   python analyze_code.py input.java -o output.java -m modernize
   ```
+
+### 3. Use as a Python Function (For Developers)
+
+If you are a developer and prefer not to use the GUI, you can import and run the core functionality in your own script:
+
+```python
+from analyze_code import analyze_code
+
+analyze_code("samples/Member.java", "output/Member_commented.java", mode="comment")
+```
+
+- This is useful for automation or integrating the tool into your own pipelines.
+- Make sure your `.env` file is present or set `GOOGLE_API_KEY` in your environment variables.
 
 ---
 
